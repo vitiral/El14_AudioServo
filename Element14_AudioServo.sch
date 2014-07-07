@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -10710,11 +10710,15 @@ Source: www.kingbright.com</description>
 <parts>
 <part name="R1" library="resistor" deviceset="R-US_" device="0204/5" value="1k"/>
 <part name="AMP1" library="El14_AudioServo" deviceset="MC1458" device=""/>
-<part name="C1" library="capacitor-wima" deviceset="C" device="2,5-3" value=".1uF"/>
+<part name="C1" library="capacitor-wima" deviceset="C" device="2,5-3" value="0.1uF"/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="AUDIO-JACK" device="2.5MM"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
+<part name="R2" library="resistor" deviceset="R-US_" device="0204/5" value="47k"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="0204/5" value="47k"/>
+<part name="C2" library="capacitor-wima" deviceset="C" device="2,5-3" value="0.1uF"/>
+<part name="P+2" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10727,13 +10731,17 @@ Source: www.kingbright.com</description>
 <instances>
 <instance part="R1" gate="G$1" x="-2.54" y="10.16"/>
 <instance part="AMP1" gate="AMP1" x="15.24" y="7.62" rot="MR180"/>
-<instance part="AMP1" gate="AMP2" x="30.48" y="-2.54" rot="MR180"/>
+<instance part="AMP1" gate="AMP2" x="30.48" y="5.08" rot="MR180"/>
 <instance part="AMP1" gate="&gt;NAME" x="22.86" y="22.86"/>
 <instance part="C1" gate="G$1" x="-25.4" y="10.16" rot="R90"/>
 <instance part="JP1" gate="G$1" x="-63.5" y="10.16"/>
 <instance part="GND1" gate="1" x="-48.26" y="17.78" rot="R180"/>
 <instance part="P+1" gate="1" x="-2.54" y="27.94"/>
 <instance part="GND2" gate="1" x="-2.54" y="17.78"/>
+<instance part="R2" gate="G$1" x="-10.16" y="0" rot="R90"/>
+<instance part="R3" gate="G$1" x="-25.4" y="5.08" rot="R180"/>
+<instance part="C2" gate="G$1" x="-43.18" y="0" rot="R180"/>
+<instance part="P+2" gate="1" x="-48.26" y="7.62"/>
 </instances>
 <busses>
 </busses>
@@ -10778,6 +10786,35 @@ Source: www.kingbright.com</description>
 <pinref part="AMP1" gate="&gt;NAME" pin="VCC+"/>
 <wire x1="-2.54" y1="25.4" x2="0" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="0" y1="22.86" x2="17.78" y2="22.86" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="-30.48" y1="5.08" x2="-43.18" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="-43.18" y1="5.08" x2="-48.26" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="P+2" gate="1" pin="+5V"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="AMP1" gate="AMP1" pin="OUT"/>
+<pinref part="AMP1" gate="AMP2" pin="VIN-"/>
+<wire x1="17.78" y1="7.62" x2="27.94" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="AMP1" gate="AMP1" pin="VIN+"/>
+<wire x1="12.7" y1="5.08" x2="-10.16" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="-20.32" y1="5.08" x2="-10.16" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="-10.16" y1="-5.08" x2="-10.16" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
